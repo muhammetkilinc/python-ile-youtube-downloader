@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="titlePage">YouTube Downloader - Muhammet KILINÇ</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+    <link rel="SHORTCUT ICON" href="{{ url_for('static', filename='assets/logo/logoSimge.png') }}" />
+  </head>
+  <body>
+
+    <nav class="navbar">
+      <div class="logoBox">
+        <div class="logoBoxLine">
+          <img src="{{ url_for('static', filename='assets/logo/logo.svg') }}" class="logo" />
+        </div>
+      </div>
+
+    </nav>
+
+
+
+    <div class="panel">
+      
+      <div class="container">
+
+        <div class="topNav">
+        
+          <div class="downloadLink">
+            <div class="youtubeIcon">
+              <img src="{{ url_for('static', filename='assets/icons/youtube.svg') }}" class="youtubeLogo" />
+            </div>
+            <div class="youtubeText">YouTube Downloader</div>
+          </div>
+        </div>
+
+        <form action="" method="post" onsubmit="return false">
+          <div class="searchBox">
+            <img src="{{ url_for('static', filename='assets/icons/youtube.svg') }}" class="youtubeLogoSearchBox" />
+            <input type="text" class="ara" id="url" minlength="17" required placeholder="https://www.youtube.com/watch?v=OkxrfCSdlv0" />
+            <button class="araButon" onclick="download()">
+              <img src="{{ url_for('static', filename='assets/icons/search.svg') }}" class="araButonIcon" />
+            </button>
+          </div>
+        </form>
+
+        <div class="yukleniyor">
+          <img src="{{ url_for('static', filename='assets/gif/loading.gif') }}" class="yukleniyorGif" />
+        </div>
+
+        <div class="info" style="display:none">
+          <div class="thumbnail">
+            <a href="#" id="thumbnailAHref" target="_blank">
+              <div class="newTab" title="Görseli yeni sekmede aç"><img src="{{ url_for('static', filename='assets/icons/link.svg') }}" class="newTabIcon" /></div>
+            </a>
+            <img src="" id="thumbnail" class="thumbnailFoto" />
+          </div>
+          <div class="infoText">
+            <div class="infoVideoText" id="title" title="#">Title</div>
+            <div class="infoExp">
+
+              <div class="infoExpBox">
+                <div class="infoExpBox1">
+                  <img src="{{ url_for('static', filename='assets/icons/user.svg') }}" class="infoExpBox1Icon" />
+                  <span class="infoExpBox1Text"><b>Yükleyen</b></span>
+                </div>
+                <div class="infoExpBox2" id="author">$Author</div>
+              </div>
+
+              <div class="infoExpBox">
+                <div class="infoExpBox1">
+                  <img src="{{ url_for('static', filename='assets/icons/clock.svg') }}" class="infoExpBox1Icon" />
+                  <span class="infoExpBox1Text"><b>Süre</b></span>
+                </div>
+                <div class="infoExpBox2" id="length">$length</div>
+              </div>
+
+              <div class="infoExpBox">
+                <div class="infoExpBox1">
+                  <img src="{{ url_for('static', filename='assets/icons/click.svg') }}" class="infoExpBox1Icon" />
+                  <span class="infoExpBox1Text"><b>Görüntülenme</b></span>
+                </div>
+                <div class="infoExpBox2" id="views">$views</div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+
+        <ul id="sources" class="downloadBox" style="display:none"></ul>
+
+        <div class="downloadBox" id="item" style="display:none">
+          
+          <div class="downloadBoxItem">
+            <div class="downloadInfo">
+              
+              <div class="downloadInfoBox">
+                <div class="downloadInfoBoxIconBox">
+                  <img src="{{ url_for('static', filename='assets/icons/quality.svg') }}" class="downloadInfoBoxIcon" />
+                </div>
+                <div class="downloadInfoBoxTextBox">
+                <span class="downloadInfoBoxText"><b>Kalite</b> {quality}</span>
+                </div>
+              </div>
+              
+              <div class="downloadInfoBox boyut">
+                <div class="downloadInfoBoxIconBox">
+                  <img src="{{ url_for('static', filename='assets/icons/boyut.svg') }}" class="downloadInfoBoxIcon" />
+                </div>
+                <div class="downloadInfoBoxTextBox">
+                <span class="downloadInfoBoxText"><b>Boyut</b> {size}</span>
+                </div>
+              </div>
+
+            </div>
+            <div class="downloadLinkBox">
+              <a href="{url}&title={title}" download="{title}" target="_blank" class="downloadBoxLink">Download</a>
+              <img src="{{ url_for('static', filename='assets/icons/download.svg') }}" class="downloadBoxIcon" />
+            </div>
+          </div>
+
+
+
+
+        </div>
+
+
+
+      </div>
+      
+    </div>
+
+
+
+
+
+
+    
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        $('#img').attr('href','#')
+        let sources = $('#sources')
+        let loader = $('.yukleniyor')
+        let result = $('.info')
+        let downloadBox = $('#sources')
+
+        function download() {
+
+            loader.show()
+            result.hide()
+            downloadBox.hide()
+            let url = $('#url').val()
+            $.get('/api/youtube?url=' + url, function(response) {
+                result.fadeIn(500)
+                downloadBox.fadeIn(500)
+                $('#thumbnail').attr('src',response.info.thumbnail)
+                $('#thumbnailAHref').attr('href',response.info.thumbnail)
+                $('#title').text(response.info.title)
+                $('#title').attr('title',response.info.title)
+                $('#titlePage').text(response.info.title)
+                $('#author').text(response.info.author)
+                $('#length').text(response.info.length)
+                $('#views').text(response.info.views)
+                loader.hide()
+
+                sources.html('')
+
+
+                $.each(response.sources, function(key, source) {
+                    let item = $('#item').html()
+                    item = item.replace('{quality}', source.quality).replace('{size}', source.size).replace('{url}',source.url).replaceAll('{title}', response.info.title)
+                    sources.append(item)
+                })
+            }, 'json')
+        }
+    </script>
+
+
+
+
+
+  </body>
+</html>

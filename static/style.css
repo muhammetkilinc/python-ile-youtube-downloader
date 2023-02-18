@@ -1,0 +1,381 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: none;
+    text-decoration: none;
+    box-sizing: border-box;
+    font-family: "Montserrat",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+:root {
+    --anaRenk: #1C4784;
+    --koyuRenk: #0d346b;
+    --pasifRenk: #E5E9F2;
+}
+
+
+
+::-webkit-scrollbar {
+	width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+	background:var(--anaRenk);
+    border-radius: 15px;    
+}
+
+
+
+
+.navbar {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 9%;
+    overflow: hidden;
+    box-shadow: 0 0 3px 1px rgba(0, 0, 0, .3);
+    background: white;
+    z-index: 100;
+}
+
+
+/* logo */
+
+.logoBox, .socialLinkBox {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.logoBoxLine {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.logo {
+    position: absolute;
+    width: 17%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.panel {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+}
+
+.container {
+    position: absolute;
+    left: 50%;
+    top: 58%;
+    transform: translate(-50%,-50%);
+}
+
+
+/* text */
+
+.topNav {
+    position: relative;
+    background: red;
+    margin-bottom: 50px;
+}
+
+.downloadLink {
+    position: absolute;
+    display: flex;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.youtubeIcon {
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+}
+
+.youtubeLogo {
+    width: 100%;
+}
+
+.youtubeText {
+    margin-top: 1px;
+    margin-left: 12px;
+    font-size: 25px;
+    font-weight: 600;
+}
+
+
+
+/* ara */
+
+.searchBox {
+    display: flex;
+    height: 40px;
+    width: 700px;
+    border-bottom: 2px solid #959595;
+    overflow: hidden;
+    transition: .3s;
+}
+
+.youtubeLogoSearchBox {
+    width: 20px;
+    filter: grayscale(100%);
+    opacity: .5;
+    transition: .4s;
+}
+
+.ara {
+    padding: 8px;
+    margin: 3.5px;
+    border-radius:5px;
+    width: 90%;
+    background: white;
+}
+
+.ara:focus {
+    color: red;
+    font-weight: 600;
+}
+
+.ara::placeholder {
+    font-weight: 400!important;
+}
+
+.ara:minlength
+
+.searchBox:has(.ara:focus), .searchBox:has(.ara:valid) {
+    border-color:#ff0000;
+}
+
+.searchBox:has(.ara:valid) .youtubeLogoSearchBox {
+    filter: grayscale(0%);
+    opacity: 1;
+}
+
+.araButon {
+    position: relative;
+    width: 10%;
+    overflow: hidden;
+    cursor: pointer;
+    background: transparent;
+}
+
+.araButonIcon {
+    position: absolute;
+    width: 30%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+
+
+
+/* loading */
+
+.yukleniyor {
+    display: none;
+    position: relative;
+}
+
+.yukleniyorGif {
+    position: absolute;
+    margin-top: 50px;
+    left: 50%;
+    top: 60%;
+    transform: translate(-50%,-50%);
+    width: 150px;
+}
+
+
+
+/* bilgiler */
+
+.info {
+    display: flex;
+    background: #F8F9FD;
+    width: 700px;
+    height: 170px;
+    margin-top: 30px;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.thumbnail {
+    position: relative;
+    box-sizing: border-box;
+    width: 190px;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 10px;
+    border: 2px solid #000;
+}
+
+.newTab {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    background: rgba(0, 0, 0, .3);
+    width: 100%;
+    height: 100%;
+    z-index: 15;
+    cursor: pointer;
+    opacity: 0;
+    transition: .2s;
+}
+
+.newTabIcon {
+    position: absolute;
+    width: 20%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.thumbnail:hover .newTab {
+    opacity: 1;
+}
+
+.thumbnailFoto {
+    position: absolute;
+    width: 140%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.infoText {
+    width: 490px;
+    padding: 15px;
+}
+
+.infoVideoText {
+    color: #09479d;
+    font-weight: 750;
+    font-size: 20px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.infoExp {
+    margin-top: 16px;
+}
+
+.infoExpBox {
+    display: flex;
+    margin-bottom: 12px;
+}
+
+.infoExpBox1 {
+    width: 40%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.infoExpBox1Icon {
+    width: 13px;
+}
+
+.infoExpBox1Text {
+    margin-left: 5px;
+    color: #09479d;
+}
+
+.infoExpBox2 {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+
+
+
+
+
+/* linkler */
+
+.downloadBox {
+    height: 230px;
+    overflow-y: auto;
+    margin-top: 20px;
+    border: 1px solid #f0f0f0;
+    border-radius: 7px;
+}
+
+.downloadBoxItem {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+    padding: 20px;
+    background: #F8F9FD;
+    border-radius: 7px;
+}
+
+.downloadInfo, .downloadInfoBox {
+    display: flex;
+}
+
+.downloadInfoBox {
+    margin-left: 20px;
+}
+
+.downloadInfoBoxIconBox {
+    position: relative;
+}
+.downloadInfoBoxIcon {
+    position: absolute;
+    width: 15px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.downloadInfoBoxTextBox {
+    margin-left: 15px;
+}
+
+.boyut {
+    margin-left: 35px;
+}
+
+.downloadLinkBox {
+    position: absolute;
+    width: 150px;
+    height: 40px;
+    left: 85%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.downloadBoxIcon {
+    position: absolute;
+    width: 20px;
+    margin: 7px;
+    margin-left: 12px;
+    z-index: 20;
+}
+
+.downloadBoxLink {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: red;
+    color: white;
+    border-radius: 7px;
+    text-align: center;
+    padding: 10px;
+}
