@@ -152,7 +152,6 @@ html, body {
     font-weight: 400!important;
 }
 
-.ara:minlength
 
 .searchBox:has(.ara:focus), .searchBox:has(.ara:valid) {
     border-color:#ff0000;
