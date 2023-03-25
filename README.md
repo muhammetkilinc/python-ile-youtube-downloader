@@ -7,3 +7,6 @@ YouTube'da yayınlanan tüm videoları indirmenize olanak sağlar.
 `127.0.0.1`
 
 **Muhammet KILINÇ © 2023**
+
+
+Benzersiz Kimlik No: GH2023021800N004
